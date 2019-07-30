@@ -8,10 +8,13 @@ namespace RESTExchangeRate.Models
     public class ExchangeRate
     {
         [JsonProperty("end_at")]
-        public string end_at { get; set; }
+        public string End_at { get; set; }
 
         [JsonProperty("start_at")]
-        public string start_at { get; set; }
+        public string Start_at { get; set; }
+
+        [JsonProperty("base")]
+        public string Base { get; set; }
 
         [JsonProperty("rates")]
         public Dictionary<string, Dictionary<string, decimal>> Rate { get; set; }

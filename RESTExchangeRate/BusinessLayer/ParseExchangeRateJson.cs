@@ -12,6 +12,9 @@ namespace RESTExchangeRate.BusinessLayer
             decimal sumRate = 0;
             decimal avgRate = 0;
             dynamic rates = null;
+            dynamic date = null;
+            dynamic minDate = null;
+            dynamic maxDate = null;
             dynamic value = null;
             dynamic min = 0;
             dynamic max = 0;
@@ -22,6 +25,7 @@ namespace RESTExchangeRate.BusinessLayer
             foreach (var rate in dataRates)
             {
                 rates = rate.Value;
+                date = rate.Name;
 
                 foreach (var key in rates)
                 {
@@ -35,6 +39,17 @@ namespace RESTExchangeRate.BusinessLayer
                     sumRate += (decimal)value;
                     min = value < min ? value : min;
                     max = value > max ? value : max;
+
+
+                    if (value == min)
+                    {
+                        minDate = date;
+                    }
+                    if (value == max)
+                    {
+                        maxDate = date;
+                    }
+
                     count++;
                 }
 
@@ -47,6 +62,8 @@ namespace RESTExchangeRate.BusinessLayer
             exchangeRateOutput.Average = avgRate;
             exchangeRateOutput.BaseCurrency = currentBase;
             exchangeRateOutput.TargetCurrency = currentTarget;
+            exchangeRateOutput.MinDate = minDate;
+            exchangeRateOutput.MaxDate = maxDate;
 
             return exchangeRateOutput;
         }

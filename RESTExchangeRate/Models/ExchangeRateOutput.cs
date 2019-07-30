@@ -20,5 +20,11 @@ namespace RESTExchangeRate.Models
         [JsonProperty("targetcurrency")]
         public string TargetCurrency { get; set; }
 
+        [JsonProperty("mindate")]
+        public string MinDate { get; set; }
+
+        [JsonProperty("maxdate")]
+        public string MaxDate { get; set; }
+
     }
 }
